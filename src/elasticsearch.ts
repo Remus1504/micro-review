@@ -1,13 +1,13 @@
 import { Client } from '@elastic/elasticsearch';
 import { ClusterHealthResponse } from '@elastic/elasticsearch/lib/api/types';
-import { config } from './src/configuration';
-import { winstonLogger } from '@remus1504/micrograde';
+import { config } from './configuration';
+import { winstonLogger } from '@remus1504/micrograde-shared';
 
 import { Logger } from 'winston';
 
 const log: Logger = winstonLogger(
   `${config.ELASTIC_SEARCH_ENDPOINT}`,
-  'UserElasticSearchServer',
+  'reviewElasticSearchServer',
   'debug',
 );
 

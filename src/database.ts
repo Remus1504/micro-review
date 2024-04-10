@@ -1,4 +1,4 @@
-import { winstonLogger } from '@remus1504/micrograde';
+import { winstonLogger } from '@remus1504/micrograde-shared';
 import { Logger } from 'winston';
 import { config } from './configuration';
 import { Pool } from 'pg';
@@ -33,7 +33,7 @@ const createTableText = `
     id SERIAL UNIQUE,
     courseId text NOT NULL,
     reviewerId text NOT NULL,
-    enrolledId text NOT NULL,
+    enrolmentId text NOT NULL,
     instructorId text NOT NULL,
     review text NOT NULL,
     reviewerImage text NOT NULL,
@@ -47,7 +47,7 @@ const createTableText = `
 
   CREATE INDEX IF NOT EXISTS courseId_idx ON public.reviews (courseId);
 
-  CREATE INDEX IF NOT EXISTS instrcutorId_idx ON public.reviews (instructorId);
+  CREATE INDEX IF NOT EXISTS instructorId_idx ON public.reviews (instructorId);
 `;
 
 const databaseConnection = async (): Promise<void> => {

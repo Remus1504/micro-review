@@ -19,9 +19,9 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@elastic/elasticsearch": "^8.12.1",
+    "@elastic/elasticsearch": "^8.12.2",
     "@jest/types": "^29.6.3",
-    "@remus1504/micrograde": "^0.0.9",
+    "@remus1504/micrograde-shared": "^0.0.5",
     "@types/amqplib": "^0.10.4",
     "@types/compression": "^1.7.5",
     "@types/cors": "^2.8.17",
@@ -61,6 +61,9 @@
   },
   "devDependencies": {
     "@types/helmet": "^4.0.0",
-    "@types/node": "^20.11.18"
+    "@types/node": "^20.11.18",
+    "@types/supertest": "^6.0.2",
+    "nodemon": "^3.1.0",
+    "supertest": "^6.3.4"
   }
 }

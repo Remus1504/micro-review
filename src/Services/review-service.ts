@@ -1,7 +1,10 @@
 import { pool } from '../database';
 import { publishFanoutMessage } from '../Queues/review-producer';
 import { reviewChannel } from '../../src/server';
-import { IReviewDocument, IReviewMessageDetails } from '@remus1504/micrograde';
+import {
+  IReviewDocument,
+  IReviewMessageDetails,
+} from '@remus1504/micrograde-shared';
 import { map } from 'lodash';
 import { QueryResult } from 'pg';
 
@@ -16,7 +19,7 @@ const objKeys: IReviewerObjectKeys = {
   courseid: 'courseId',
   reviewerid: 'reviewerId',
   createdat: 'createdAt',
-  enrolledrid: 'enrolledId',
+  enrolmentid: 'enrolmentId',
   instructorid: 'instructorId',
   reviewerimage: 'reviewerImage',
   reviewerusername: 'reviewerUsername',
@@ -31,7 +34,7 @@ const addReview = async (data: IReviewDocument): Promise<IReviewDocument> => {
     instructorId,
     review,
     rating,
-    enrolledId,
+    enrolmentId,
     reviewType,
     reviewerUsername,
     country,
@@ -49,7 +52,7 @@ const addReview = async (data: IReviewDocument): Promise<IReviewDocument> => {
       instructorId,
       review,
       rating,
-      enrolledId,
+      enrolmentId,
       reviewType,
       reviewerUsername,
       country,
@@ -62,7 +65,7 @@ const addReview = async (data: IReviewDocument): Promise<IReviewDocument> => {
     instructorId: data.instructorId,
     review: data.review,
     rating: data.rating,
-    enrolledId: data.enrolledId,
+    enrolmentId: data.enrolmentId,
     createdAt: `${createdAtDate}`,
     type: `${reviewType}`,
   };
@@ -97,7 +100,7 @@ const getReviewsByInstructorId = async (
   instructorId: string,
 ): Promise<IReviewDocument[]> => {
   const reviews: QueryResult = await pool.query(
-    'SELECT * FROM reviews WHERE reviews.sellerId = $1 AND reviews.reviewType = $2',
+    'SELECT * FROM reviews WHERE reviews.instructorId = $1 AND reviews.reviewType = $2',
     [instructorId, 'instructor-review'],
   );
   const mappedResult: IReviewDocument[] = map(reviews.rows, (key) => {

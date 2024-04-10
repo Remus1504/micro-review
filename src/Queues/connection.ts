@@ -1,18 +1,18 @@
 import { config } from '../configuration';
-import { winstonLogger } from '@remus1504/micrograde';
+import { winstonLogger } from '@remus1504/micrograde-shared';
 import client, { Channel, Connection } from 'amqplib';
 import { Logger } from 'winston';
 
 const log: Logger = winstonLogger(
   `${config.ELASTIC_SEARCH_ENDPOINT}`,
   'reviewQueueConnection',
-  'debug'
+  'debug',
 );
 
 async function createConnection(): Promise<Channel | undefined> {
   try {
     const connection: Connection = await client.connect(
-      `${config.RABBITMQ_ENDPOINT}`
+      `${config.RABBITMQ_ENDPOINT}`,
     );
     const channel: Channel = await connection.createChannel();
     log.info('Review server connected to queue successfully...');

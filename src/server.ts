@@ -6,7 +6,7 @@ import {
   IAuthPayload,
   IErrorResponse,
   winstonLogger,
-} from '@remus1504/micrograde';
+} from '@remus1504/micrograde-shared';
 import { Logger } from 'winston';
 import { config } from './configuration';
 import {
@@ -22,8 +22,8 @@ import helmet from 'helmet';
 import cors from 'cors';
 import { verify } from 'jsonwebtoken';
 import compression from 'compression';
-import { checkConnection } from '../elasticsearch';
-import { appRoutes } from '../endpoints';
+import { checkConnection } from './elasticsearch';
+import { appRoutes } from './endpoints';
 import { createConnection } from './Queues/connection';
 import { Channel } from 'amqplib';
 
